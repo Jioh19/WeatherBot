@@ -5,7 +5,7 @@ namespace WeatherBot;
 
 public class JsonReader : IReader<Weather>
 {
-    // public  Weather Read(string url)
+    // public Weather Read(string url)
     // {
     //     string jsonString = File.ReadAllText(url);
     //     
@@ -23,9 +23,9 @@ public class JsonReader : IReader<Weather>
     //     return weather;
     // }
     
-    public async Task<Weather> ReadAsync(string file)
+    public async Task<Weather> ReadAsync(string filePath)
     {
-        string jsonString = await File.ReadAllTextAsync(file);
+        string jsonString = await File.ReadAllTextAsync(filePath);
         
         Weather weather;
         try

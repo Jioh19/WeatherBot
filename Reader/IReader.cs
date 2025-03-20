@@ -4,5 +4,5 @@ namespace WeatherBot;
 
 public interface IReader<T>
 {
-    Task<T> ReadAsync(string url);
+    Task<T> ReadAsync(string filePath);
 }

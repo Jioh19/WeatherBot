@@ -5,9 +5,9 @@ namespace WeatherBot;
 
 public class BotReader : IReader<Dictionary<string, Bot>>
 {
-    public async Task<Dictionary<string, Bot>> ReadAsync(string file)
+    public async Task<Dictionary<string, Bot>> ReadAsync(string filePath)
     {
-        string jsonString = await File.ReadAllTextAsync(file);
+        string jsonString = await File.ReadAllTextAsync(filePath);
 
         try
         {
