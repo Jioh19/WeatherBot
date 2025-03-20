@@ -2,7 +2,7 @@ using WeatherBot.Model;
 
 namespace WeatherBot;
 
-public static class Selector
+public static class TypeSelector
 {
     public static async Task<Weather> ReadAsync(String url)
     {

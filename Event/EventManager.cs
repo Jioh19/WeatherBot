@@ -19,33 +19,33 @@ public class EventManager
         foreach (var kpv in Bots)
         {
             Bot bot = kpv.Value;
-            if (bot.Enabled)
+
+            switch (bot.Type)
             {
-                switch (bot.Type)
-                {
-                    case Bot.BotType.HUMIDITY:
-                        if (Weather.Humidity > bot.Value)
+                case Bot.BotType.HUMIDITY:
+                    if (Weather.Humidity > bot.Value)
+                    {
+                        Console.WriteLine($"{kpv.Key} activated!");
+                        Console.WriteLine($"{kpv.Key}: {bot.Message}");
+                    }
+
+                    break;
+                case Bot.BotType.TEMPERATURE:
+                    if (bot.Value <= 0)
+                    {
+                        if (Weather.Temperature < bot.Value)
                         {
                             Console.WriteLine($"{kpv.Key} activated!");
                             Console.WriteLine($"{kpv.Key}: {bot.Message}");
                         }
-                        break;
-                    case Bot.BotType.TEMPERATURE:
-                        if (bot.Value <= 0)
-                        {
-                            if (Weather.Temperature < bot.Value)
-                            {
-                                Console.WriteLine($"{kpv.Key} activated!");
-                                Console.WriteLine($"{kpv.Key}: {bot.Message}");
-                            } 
-                        }
-                        else if (Weather.Temperature > bot.Value)
-                        {
-                            Console.WriteLine($"{kpv.Key} activated!");
-                            Console.WriteLine($"{kpv.Key}: {bot.Message}");
-                        } 
-                        break;
-                }
+                    }
+                    else if (Weather.Temperature > bot.Value)
+                    {
+                        Console.WriteLine($"{kpv.Key} activated!");
+                        Console.WriteLine($"{kpv.Key}: {bot.Message}");
+                    }
+
+                    break;
             }
         }
     }
