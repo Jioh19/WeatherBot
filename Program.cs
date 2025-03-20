@@ -5,7 +5,7 @@ using WeatherBot.Model;
 
 Console.WriteLine("Hello, World!");
 
-Weather weather = Selector.Read("../../../input.xml");
+Weather weather = await Selector.ReadAsync("../../../input.xml");
 
 
 Console.WriteLine($"{weather.Location} {weather.Temperature} {weather.Humidity} ");
