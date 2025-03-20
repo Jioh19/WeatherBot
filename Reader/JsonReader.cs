@@ -23,14 +23,15 @@ public class JsonReader : Reader
     //     return weather;
     // }
     
-    public async Task<Weather> ReadAsync(string url)
+    public async Task<Weather> ReadAsync(string file)
     {
-        string jsonString = await File.ReadAllTextAsync(url);
+        string jsonString = await File.ReadAllTextAsync(file);
         
         Weather weather;
         try
         {
             weather = JsonConvert.DeserializeObject<Weather>(jsonString);
+            return weather;
             
         }
         catch (Exception e)
@@ -38,6 +39,5 @@ public class JsonReader : Reader
             Console.WriteLine($"Error parsing Json: {e.Message}");
             throw;
         }
-        return weather;
     }
 }
