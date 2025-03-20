@@ -31,11 +31,19 @@ public class EventManager
                         }
                         break;
                     case Bot.BotType.TEMPERATURE:
-                        if (Weather.Temperature > bot.Value)
+                        if (bot.Value <= 0)
+                        {
+                            if (Weather.Temperature < bot.Value)
+                            {
+                                Console.WriteLine($"{kpv.Key} activated!");
+                                Console.WriteLine($"{kpv.Key}: {bot.Message}");
+                            } 
+                        }
+                        else if (Weather.Temperature > bot.Value)
                         {
                             Console.WriteLine($"{kpv.Key} activated!");
                             Console.WriteLine($"{kpv.Key}: {bot.Message}");
-                        }
+                        } 
                         break;
                 }
             }

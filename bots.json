@@ -22,7 +22,7 @@
   "NullBot": {
     "enabled": true,
     "temperatureThreshold": 0,
-    "message": "Null bot, hace mas de 0 grados!"
+    "message": "Null bot, hace menos de 0 grados!"
   },
   "OffBot": {
     "enabled": false,
