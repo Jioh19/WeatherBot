@@ -4,5 +4,5 @@ namespace WeatherBot;
 
 public interface Reader
 {
-    Weather Read(string url);
+    Task<Weather> ReadAsync(string url);
 }

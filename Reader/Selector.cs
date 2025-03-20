@@ -4,7 +4,7 @@ namespace WeatherBot;
 
 public static class Selector
 {
-    public static Weather Read(String url)
+    public static async Task<Weather> ReadAsync(String url)
     {
         string type = url.Split('.').Last();
 
@@ -21,7 +21,7 @@ public static class Selector
                 throw new InvalidDataException("Invalid data type");
         }
 
-        Weather weather = reader.Read(url);
+        Weather weather = await reader.ReadAsync(url);
         return weather;
     }
 }
