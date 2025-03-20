@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using WeatherBot;
+using WeatherBot.Event;
 using WeatherBot.Model;
 
 
@@ -17,7 +18,9 @@ foreach (var kvp in bots.ToList())
 {
     Bot bot = kvp.Value;
     string name = kvp.Key;
-    string botString = string.Format("name:{4, -10} enabled:{0,-10} type:{1,-15} value:{2, -6} message:{3,-20}", bot.Enabled,
-        bot.Type, bot.Value, bot.Message, name);
-    Console.WriteLine(botString);
+    Console.WriteLine($"name:{name, -10} enabled:{bot.Enabled,-10} type:{bot.Type,-15} value:{bot.Value, -6} message:{bot.Message,-20} ");
 }
+EventManager eventManager = new EventManager(weather, bots);
+eventManager.report();
+
+
