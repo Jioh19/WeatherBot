@@ -3,7 +3,7 @@ using WeatherBot.Model;
 
 namespace WeatherBot;
 
-public class JsonReader : Reader
+public class JsonReader : IReader<Weather>
 {
     // public  Weather Read(string url)
     // {

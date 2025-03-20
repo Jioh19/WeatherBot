@@ -2,12 +2,12 @@ namespace WeatherBot.Model;
 
 public class Bot
 {
-    public bool enabled { get; set; }
-    public string message { get; set; }
+    public bool Enabled { get; set; }
+    public string Message { get; set; }
     
-    public int value;
-    public Type type { get; set; }
-    public enum Type
+    public int Value;
+    public BotType Type { get; set; }
+    public enum BotType
     {
         TEMPERATURE,
         HUMIDITY

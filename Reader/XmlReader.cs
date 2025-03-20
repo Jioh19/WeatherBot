@@ -3,7 +3,7 @@ using WeatherBot.Model;
 
 namespace WeatherBot;
 
-public class XmlReader : Reader
+public class XmlReader : IReader<Weather>
 {
     // public Weather Read(string filePath)
     // {

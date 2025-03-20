@@ -8,7 +8,7 @@ public static class Selector
     {
         string type = url.Split('.').Last();
 
-        Reader reader;
+        IReader<Weather> reader;
         switch (type)
         {
             case "json":

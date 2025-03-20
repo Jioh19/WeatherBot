@@ -3,9 +3,9 @@ using WeatherBot.Model;
 
 namespace WeatherBot;
 
-public class BotReader
+public class BotReader :IReader<Dictionary<string, Bot>>
 {
-    public static async Task<Dictionary<string, Bot>> ReadAsync(string file)
+    public async Task<Dictionary<string, Bot>> ReadAsync(string file)
     {
         string jsonString = await File.ReadAllTextAsync(file);
 

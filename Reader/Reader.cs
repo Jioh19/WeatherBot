@@ -2,7 +2,7 @@ using WeatherBot.Model;
 
 namespace WeatherBot;
 
-public interface Reader
+public interface IReader<T>
 {
-    Task<Weather> ReadAsync(string url);
+    Task<T> ReadAsync(string url);
 }
