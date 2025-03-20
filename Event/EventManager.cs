@@ -4,9 +4,9 @@ namespace WeatherBot.Event;
 
 public class EventManager
 {
-    public Weather Weather;
+    private Weather Weather;
 
-    public Dictionary<string, Bot> Bots;
+    private Dictionary<string, Bot> Bots;
 
     public EventManager(Weather weather, Dictionary<string, Bot> bots)
     {
@@ -14,7 +14,7 @@ public class EventManager
         this.Bots = bots;
     }
 
-    public void report()
+    public void Report()
     {
         foreach (var kpv in Bots)
         {
@@ -22,7 +22,7 @@ public class EventManager
 
             switch (bot.Type)
             {
-                case Bot.BotType.HUMIDITY:
+                case Bot.BotType.Humidity:
                     if (Weather.Humidity > bot.Value)
                     {
                         Console.WriteLine($"{kpv.Key} activated!");
@@ -30,7 +30,7 @@ public class EventManager
                     }
 
                     break;
-                case Bot.BotType.TEMPERATURE:
+                case Bot.BotType.Temperature:
                     if (bot.Value <= 0)
                     {
                         if (Weather.Temperature < bot.Value)

@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using WeatherBot.Model;
 
-namespace WeatherBot;
+namespace WeatherBot.Reader;
 
 public class BotReader : IReader<Dictionary<string, Bot>>
 {
@@ -27,12 +27,12 @@ public class BotReader : IReader<Dictionary<string, Bot>>
 
                 if (data.humidityThreshold != null)
                 {
-                    bot.Type = Bot.BotType.HUMIDITY;
+                    bot.Type = Bot.BotType.Humidity;
                     bot.Value = (int)data.humidityThreshold;
                 }
                 else if (data.temperatureThreshold != null)
                 {
-                    bot.Type = Bot.BotType.TEMPERATURE;
+                    bot.Type = Bot.BotType.Temperature;
                     bot.Value = (int)data.temperatureThreshold;
                 }
 

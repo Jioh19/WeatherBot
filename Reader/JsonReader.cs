@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using WeatherBot.Model;
 
-namespace WeatherBot;
+namespace WeatherBot.Reader;
 
 public class JsonReader : IReader<Weather>
 {
@@ -27,10 +27,9 @@ public class JsonReader : IReader<Weather>
     {
         string jsonString = await File.ReadAllTextAsync(filePath);
         
-        Weather weather;
         try
         {
-            weather = JsonConvert.DeserializeObject<Weather>(jsonString);
+            Weather weather = JsonConvert.DeserializeObject<Weather>(jsonString);
             return weather;
             
         }

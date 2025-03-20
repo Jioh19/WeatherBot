@@ -1,7 +1,7 @@
 using System.Xml;
 using WeatherBot.Model;
 
-namespace WeatherBot;
+namespace WeatherBot.Reader;
 
 public class XmlReader : IReader<Weather>
 {

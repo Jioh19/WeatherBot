@@ -9,7 +9,7 @@ public class Bot
     public BotType Type { get; set; }
     public enum BotType
     {
-        TEMPERATURE,
-        HUMIDITY
+        Temperature,
+        Humidity
     }
 }

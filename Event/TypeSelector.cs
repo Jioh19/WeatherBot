@@ -1,6 +1,7 @@
 using WeatherBot.Model;
+using WeatherBot.Reader;
 
-namespace WeatherBot;
+namespace WeatherBot.Event;
 
 public static class TypeSelector
 {

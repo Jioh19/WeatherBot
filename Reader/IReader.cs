@@ -1,6 +1,6 @@
 using WeatherBot.Model;
 
-namespace WeatherBot;
+namespace WeatherBot.Reader;
 
 public interface IReader<T>
 {
