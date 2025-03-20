@@ -16,7 +16,6 @@ public class EventManager
 
     public void report()
     {
-        Console.WriteLine(Weather.ToString());
         foreach (var kpv in Bots)
         {
             Bot bot = kpv.Value;
@@ -25,7 +24,7 @@ public class EventManager
                 switch (bot.Type)
                 {
                     case Bot.BotType.HUMIDITY:
-                        if (Weather.Humidity < bot.Value)
+                        if (Weather.Humidity > bot.Value)
                         {
                             Console.WriteLine($"{kpv.Key} activated!");
                             Console.WriteLine($"{kpv.Key}: {bot.Message}");
