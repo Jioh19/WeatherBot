@@ -3,24 +3,17 @@ using WeatherBot.Reader;
 
 namespace WeatherBot.Event;
 
-public static class TypeSelector
+public interface ITypeSelector
 {
-    public static async Task<Weather> ReadAsync(String url)
-    {
-        string type = url.Split('.').Last();
+    public Task<Weather> ReadAsync(string url);
+}
 
-        // IReader<Weather> reader;
-        // switch (type)
-        // {
-        //     case "json":
-        //         reader = new JsonReader();
-        //         break;
-        //     case "xml":
-        //         reader = new XmlReader();
-        //         break;
-        //     default:
-        //         throw new InvalidDataException("Invalid data type");
-        // }
+public class TypeSelector : ITypeSelector
+{
+    public async Task<Weather> ReadAsync(string url)
+    {
+        var type = url.Split('.').Last();
+
         IReader<Weather> reader = type switch
         {
             "json" => new JsonReader(),

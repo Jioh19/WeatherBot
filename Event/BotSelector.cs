@@ -8,5 +8,4 @@ public static class BotSelector
     {
         return bots.Where(kvp => kvp.Value.Enabled).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
     }
-    
 }

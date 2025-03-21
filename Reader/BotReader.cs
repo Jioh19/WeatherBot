@@ -10,31 +10,38 @@ public class BotReader : IReader<Dictionary<string, Bot>>
         string jsonString = await File.ReadAllTextAsync(filePath);
 
         try
-        {
-            Dictionary<string, dynamic>? unclassifiedBots =
-                JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonString);
+        { 
+            var unclassifiedBots = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonString) ?? [];
 
-            // Console.WriteLine(jsonString);
-
-            Dictionary<string, Bot> bots = new Dictionary<string, Bot>();
+            Dictionary<string, Bot> bots = new();
 
             foreach (var kpv in unclassifiedBots)
             {
                 var data = kpv.Value;
-                Bot bot = new Bot();
+                Bot bot;
+                if (data.humidityThreshold is not null)
+                {
+                    bot = new HumidityBot();
+                    if (!int.TryParse(data.humidityThreshold, out int result))
+                    {
+                        throw new Exception("Humidity threshold must be an integer");
+                    }
+                    bot.Value = result;
+                    bot.Treshold = data.humidityThreshold;
+                }
+                else if (data.temperatureThreshold is not null)
+                {
+                    bot = new Temperature();
+                    bot.Value = (int)data.temperatureThreshold;
+                    bot.Treshold = data.temperatureThreshold;
+                }
+                else
+                {
+                    throw new Exception("Invalid bot type");
+                }
+                
                 bot.Enabled = data.enabled;
                 bot.Message = data.message;
-
-                if (data.humidityThreshold != null)
-                {
-                    bot.Type = Bot.BotType.Humidity;
-                    bot.Value = (int)data.humidityThreshold;
-                }
-                else if (data.temperatureThreshold != null)
-                {
-                    bot.Type = Bot.BotType.Temperature;
-                    bot.Value = (int)data.temperatureThreshold;
-                }
 
                 bots.Add(kpv.Key, bot);
             }
