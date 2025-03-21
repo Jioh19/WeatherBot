@@ -49,8 +49,13 @@ public class XmlReader : IReader<Weather>
     public async Task<Weather> ReadAsync(string filePath)
     {
         
-        XmlReaderSettings settings = new XmlReaderSettings();
-        settings.Async = true;
+        // XmlReaderSettings settings = new XmlReaderSettings();
+        // settings.Async = true;
+        XmlReaderSettings settings = new XmlReaderSettings
+        {
+            Async = true
+        };
+        
         
         System.Xml.XmlReader reader = System.Xml.XmlReader.Create(filePath, settings);
         Weather weather = new Weather();

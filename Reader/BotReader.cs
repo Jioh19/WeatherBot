@@ -11,7 +11,7 @@ public class BotReader : IReader<Dictionary<string, Bot>>
 
         try
         {
-            Dictionary<string, dynamic> unclassifiedBots =
+            Dictionary<string, dynamic>? unclassifiedBots =
                 JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonString);
 
             // Console.WriteLine(jsonString);

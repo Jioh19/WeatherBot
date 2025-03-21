@@ -2,28 +2,35 @@ using WeatherBot.Model;
 
 namespace WeatherBot.Event;
 
-public class EventManager
+public class EventManager(Weather weather, Dictionary<string, Bot> bots)
 {
-    private Weather Weather;
+    private readonly Weather _weather = weather;
 
-    private Dictionary<string, Bot> Bots;
+    private Dictionary<string, Bot> _bots = bots;
 
-    public EventManager(Weather weather, Dictionary<string, Bot> bots)
+    // public EventManager(Weather weather, Dictionary<string, Bot> bots)
+    // {
+    //     this._weather = weather;
+    //     this._bots = bots;
+    // }
+
+    private void UpdateBots(Dictionary<string, Bot> bots)
     {
-        this.Weather = weather;
-        this.Bots = bots;
+        this._bots = BotSelector.SelectEnabled(bots);
     }
-
+    
     public void Report()
     {
-        foreach (var kpv in Bots)
+        UpdateBots(_bots);
+        
+        foreach (var kpv in _bots)
         {
             Bot bot = kpv.Value;
 
             switch (bot.Type)
             {
                 case Bot.BotType.Humidity:
-                    if (Weather.Humidity > bot.Value)
+                    if (_weather.Humidity > bot.Value)
                     {
                         Console.WriteLine($"{kpv.Key} activated!");
                         Console.WriteLine($"{kpv.Key}: {bot.Message}");
@@ -33,13 +40,13 @@ public class EventManager
                 case Bot.BotType.Temperature:
                     if (bot.Value <= 0)
                     {
-                        if (Weather.Temperature < bot.Value)
+                        if (_weather.Temperature < bot.Value)
                         {
                             Console.WriteLine($"{kpv.Key} activated!");
                             Console.WriteLine($"{kpv.Key}: {bot.Message}");
                         }
                     }
-                    else if (Weather.Temperature > bot.Value)
+                    else if (_weather.Temperature > bot.Value)
                     {
                         Console.WriteLine($"{kpv.Key} activated!");
                         Console.WriteLine($"{kpv.Key}: {bot.Message}");

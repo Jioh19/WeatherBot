@@ -23,7 +23,7 @@ try
     //     Console.WriteLine($"name:{name, -10} enabled:{bot.Enabled,-10} type:{bot.Type,-15} value:{bot.Value, -6} message:{bot.Message,-20} ");
     // }
     
-    EventManager eventManager = new EventManager(weather, BotSelector.SelectEnabled(bots));
+    EventManager eventManager = new EventManager(weather, bots);
     eventManager.Report();
 
 }
